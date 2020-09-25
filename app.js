@@ -22,3 +22,19 @@ maxNum.textContent = max;
 function getRandomNumber(min, max) {
   console.log(Math.floor(Math.random() * (max - min + 1) + min));
 }
+
+// Litsen for guess
+guessBtn.addEventListener("click", (e) => {
+  let guess = parseInt(guessInput.value);
+
+  // Validate
+  if (isNaN(guess) || guess < min || guess > max) {
+    setMessage(`Please enter a number between ${min} and ${max}`, "red");
+  }
+});
+
+// Set message
+function setMessage(msg, color) {
+  message.textContent = msg;
+  message.style.color = color;
+}
