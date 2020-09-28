@@ -20,7 +20,7 @@ maxNum.textContent = max;
 
 // Generate random game winning number
 function getRandomNumber(min, max) {
-  console.log(Math.floor(Math.random() * (max - min + 1) + min));
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // Litsen for guess
@@ -34,11 +34,14 @@ guessBtn.addEventListener("click", (e) => {
 
   // Check if won
   if (guess == winningNum) {
-    console.log("win");
+    gameOver(true, `${winningNum} is correct, YOU WIN!`);
   } else {
     guessesLeft -= 1;
     if (guessesLeft === 0) {
-      console.log("game over");
+      gameOver(
+        false,
+        `Game Over, you lost, The correct number was ${winningNum}`
+      );
     } else {
       guessInput.style.borderColor = "red";
       message.style.color = "red";
@@ -47,6 +50,25 @@ guessBtn.addEventListener("click", (e) => {
     }
   }
 });
+
+// Check Game Over Result
+function gameOver(isWon, msg) {
+  let color;
+  isWon === true ? (color = "green") : (color = "red");
+
+  // Disable input
+  guessInput.disabled = true;
+  // Change border color
+  guessInput.style.borderColor = color;
+  // Set text color
+  message.style.color = color;
+  // Set message
+  setMessage(msg, color);
+  // Play again ?
+  guessBtn.value = "Play Again";
+  guessBtn.className += "play-again";
+  // guessBtn.classList.add("play-again");
+}
 
 // Set message
 function setMessage(msg, color) {
