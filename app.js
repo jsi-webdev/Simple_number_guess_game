@@ -31,6 +31,21 @@ guessBtn.addEventListener("click", (e) => {
   if (isNaN(guess) || guess < min || guess > max) {
     setMessage(`Please enter a number between ${min} and ${max}`, "red");
   }
+
+  // Check if won
+  if (guess == winningNum) {
+    console.log("win");
+  } else {
+    guessesLeft -= 1;
+    if (guessesLeft === 0) {
+      console.log("game over");
+    } else {
+      guessInput.style.borderColor = "red";
+      message.style.color = "red";
+      guessInput.value = "";
+      setMessage(`${guess} is not correct, ${guessesLeft} guesses left`, "red");
+    }
+  }
 });
 
 // Set message
