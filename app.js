@@ -51,6 +51,13 @@ guessBtn.addEventListener("click", (e) => {
   }
 });
 
+// Page reload at Play again
+game.addEventListener("mousedown", (e) => {
+  if (e.target.classList.contains("play-again")) {
+    window.location.reload();
+  }
+});
+
 // Check Game Over Result
 function gameOver(isWon, msg) {
   let color;
